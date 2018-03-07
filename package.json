@@ -1,0 +1,27 @@
+{
+  "name": "abonnement",
+  "version": "1.0.0",
+  "description": "A JavaScript mixin to handle callback registration.",
+  "main": "dist/abonnement.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify": "uglifyjs --compress  -o abonnement.min.js -- abonnement.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzi/abonnement.git"
+  },
+  "keywords": [
+    "event",
+    "subscription"
+  ],
+  "author": "Thomas Zilliox <https://tzi.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tzi/abonnement/issues"
+  },
+  "homepage": "https://github.com/tzi/abonnement#readme",
+  "devDependencies": {
+    "uglify-js": "^3.3.13"
+  }
+}
