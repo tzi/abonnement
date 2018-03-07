@@ -1,13 +1,13 @@
 abonnement
 ======
 
-A JavaScript mixin to handle callback registration.
+Tiny JavaScript library to handle event callback registration.
 
 Highlights:
 
  * No dependencies
  * Usable in vanilla JavaScript, even ES5
- * Tiny! Weighs just 7kB
+ * Tiny! Weighs under 1kB
  
 Usage
 ------
@@ -34,13 +34,15 @@ onNewData(data => console.log(data));
 events.trigger('newData');
 ```
  
-Module Architecture Example
+Modular Architecture Example
 ------
 
-abonnement could be use to create a light dependency between two modules.
+The main purpose of *abonnement* is to simplify modular architecture in an ES5 context.
+
+The event handler pattern allow us to connect modules without having explicit dependencies.
 
 ```js
-// One module
+// First, I create one module that will handle some data
 function createBack() {
   const events = abonnement();
   setTimeout(() => events.trigger('end'), 3000);
@@ -50,7 +52,7 @@ function createBack() {
   };
 }
 
-// A second module
+// Then, I create another module that will handle the output
 function createFront() {
   function display(message) {
     console.log(message);
@@ -61,7 +63,7 @@ function createFront() {
   };
 }
 
-// App that links the two modules together
+// Finally, I create the App that will links the modules together
 const back = createBack();
 const front = createFront();
 back.onEnd(function() {
@@ -100,10 +102,10 @@ onNewData(data => console.log(`New user connected: ${data.id}`));
 // Filtering events by the data
 onNewData({ id: 'john' }, data => console.log('John is connected'));
 
-// Filtering events by ids
+// Filtering events by id
 onNewData('john', data => console.log('John is connected'));
 
-// Declare custom event id
+// Declare a custom id field
 const onNewData = events.getRegisterHandler('newData', 'name');
 onNewData('John', data => console.log('John is connected'));
 events.trigger('newData', { id: 76, name: 'John' });
